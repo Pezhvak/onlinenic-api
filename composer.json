@@ -3,7 +3,7 @@
   "description": "A simple and useful onlinenic standalone package (with laravel support)",
   "type": "library",
   "require": {
-    "illuminate/support": "^5.8",
+    "illuminate/support": "~5.5",
     "php": "^7.2",
     "guzzlehttp/guzzle": "^6.3"
   },
