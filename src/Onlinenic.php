@@ -362,15 +362,16 @@ class Onlinenic
      * @param string $domain domain name to register
      * @param int $period [1-10] years to register domain for
      * @param array $dns [2-6] dns servers to set for
-     * @param int $registrant_contact_id registrant contact id
-     * @param int $admin_contact_id administrator contact id
-     * @param int $tech_contact_id technical contact id
-     * @param int $billing_contact_id billing contact id
+     * @param string $registrant_contact_id registrant contact id
+     * @param string $admin_contact_id administrator contact id
+     * @param string $tech_contact_id technical contact id
+     * @param string $billing_contact_id billing contact id
      * @param string $premium_fee onlinenic requires you to send the amount you are going to pay if domain is premium
      * @return object result
      */
-    public function registerDomain(string $domain, int $period, array $dns, int $registrant_contact_id,
-                                   int $admin_contact_id, int $tech_contact_id, int $billing_contact_id, string $premium_fee = null): object
+    public function registerDomain(string $domain, int $period, array $dns, string $registrant_contact_id,
+                                   string $admin_contact_id, string $tech_contact_id, string $billing_contact_id,
+                                   string $premium_fee = null): object
     {
 
         $dnss = [];
@@ -511,6 +512,8 @@ class Onlinenic
         if (strtoupper($country_two_digit) == 'IR') $country_two_digit = 'AQ'; // Antarctica is untouched ;)
         if (substr($phone, 0, 3) == '+98') $phone = str_replace('+98.', '+0.98', $phone);
         if (substr($fax, 0, 3) == '+98') $fax = str_replace('+98.', '+0.98', $fax);
+        if (strtolower($province) == 'tehran') $province = 'Tehraan';
+        if (strtolower($city) == 'tehran') $city = 'Tehraan';
 
         return $this->_request(Resources::Domain, 'createContact', [
             'ext' => $ext,
