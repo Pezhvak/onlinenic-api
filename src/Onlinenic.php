@@ -3,6 +3,7 @@
 namespace Pezhvak\OnlinenicApi;
 
 use GuzzleHttp\Client;
+use \stdClass;
 
 /**
  * Class Onlinenic
@@ -44,9 +45,9 @@ class Onlinenic
     /**
      * Parse Certificate Signing Request
      * @param $csr string csr string
-     * @return object result
+     * @return stdClass result
      */
-    public function parseCSR(string $csr): object
+    public function parseCSR(string $csr): stdClass
     {
         return $this->_request(Resources::SSL, 'parseCsr', compact('csr', 'csr'));
     }
@@ -54,9 +55,9 @@ class Onlinenic
     /**
      * Return a List of valid Approval Email addresses.
      * @param string $domain
-     * @return object result
+     * @return stdClass result
      */
-    public function getApprovalEmailAddress(string $domain): object
+    public function getApprovalEmailAddress(string $domain): stdClass
     {
         return $this->_request(Resources::SSL, 'getApprovalEmailList', compact('domain'));
     }
@@ -91,7 +92,7 @@ class Onlinenic
      * @param string|NULL $org_phone
      * @param string|NULL $org_fax
      * @param string|NULL $org_postalcode
-     * @return object result
+     * @return stdClass result
      */
     public function orderSSL(string $product_id, int $period, int $server_type, string $csr, string $approval_email,
                              string $dcv_method = DCVMethods::Email, string $admin_firstname = NULL,
@@ -101,7 +102,7 @@ class Onlinenic
                              string $sans = NULL, string $duns = NULL, string $dba = NULL, string $org_name = NULL,
                              string $org_address_1 = NULL, string $org_address_2 = NULL, string $org_city = NULL,
                              string $org_state = NULL, string $org_country = NULL, string $org_phone = NULL,
-                             string $org_fax = NULL, string $org_postalcode = NULL): object
+                             string $org_fax = NULL, string $org_postalcode = NULL): stdClass
     {
         return $this->_request(Resources::SSL, 'orderSSL', [
             'productid' => $product_id,
@@ -162,7 +163,7 @@ class Onlinenic
      * @param string|NULL $org_phone
      * @param string|NULL $org_fax
      * @param string|NULL $org_postalcode
-     * @return object result
+     * @return stdClass result
      */
     public function renewSSL(string $order_id, int $period, string $csr, string $approval_email,
                              string $dcv_method = DCVMethods::Email, string $admin_firstname = NULL,
@@ -172,7 +173,7 @@ class Onlinenic
                              string $duns = NULL, string $org_name = NULL,
                              string $org_address_1 = NULL, string $org_address_2 = NULL, string $org_city = NULL,
                              string $org_state = NULL, string $org_country = NULL, string $org_phone = NULL,
-                             string $org_fax = NULL, string $org_postalcode = NULL): object
+                             string $org_fax = NULL, string $org_postalcode = NULL): stdClass
     {
         return $this->_request(Resources::SSL, 'renewSSL', [
             'orderid' => $order_id,
@@ -208,9 +209,9 @@ class Onlinenic
      * Get SSL Product Details
      * @param string|NULL $productid
      * @param int|NULL $page
-     * @return object
+     * @return stdClass
      */
-    public function getSSLProductDetails(string $productid = NULL, int $page = NULL): object
+    public function getSSLProductDetails(string $productid = NULL, int $page = NULL): stdClass
     {
         return $this->_request(Resources::SSL, 'getSSLProductDetails', compact('productid', 'page'));
     }
@@ -218,9 +219,9 @@ class Onlinenic
     /**
      * Get SSL Order ID
      * @param string $domain
-     * @return object
+     * @return stdClass
      */
-    public function getSSLOrderID(string $domain): object
+    public function getSSLOrderID(string $domain): stdClass
     {
         return $this->_request(Resources::SSL, 'getSSLOrderId', compact('domain'));
     }
@@ -228,9 +229,9 @@ class Onlinenic
     /**
      * Get SSL Order Info
      * @param string $orderid
-     * @return object
+     * @return stdClass
      */
-    public function getSSLOrderInfo(string $orderid): object
+    public function getSSLOrderInfo(string $orderid): stdClass
     {
         return $this->_request(Resources::SSL, 'getSSLOrderInfo', compact('orderid'));
     }
@@ -238,9 +239,9 @@ class Onlinenic
     /**
      * Get SSL Order List
      * @param int|NULL $page
-     * @return object
+     * @return stdClass
      */
-    public function getSSLOrderList(int $page = NULL): object
+    public function getSSLOrderList(int $page = NULL): stdClass
     {
         return $this->_request(Resources::SSL, 'getSSLOrderList', compact('page'));
     }
@@ -252,9 +253,9 @@ class Onlinenic
      * @param string $country
      * @param string|NULL $wildcardsans
      * @param string|NULL $sans
-     * @return object
+     * @return stdClass
      */
-    public function getSSLPrice(string $productid, int $period, string $country, string $wildcardsans = NULL, string $sans = NULL): object
+    public function getSSLPrice(string $productid, int $period, string $country, string $wildcardsans = NULL, string $sans = NULL): stdClass
     {
         return $this->_request(Resources::SSL, 'getSSLPrice', compact('productid', 'period', 'country', 'wildcardsans', 'sans'));
     }
@@ -262,9 +263,9 @@ class Onlinenic
     /**
      * Resend Approval Email
      * @param string $orderid
-     * @return object
+     * @return stdClass
      */
-    public function resendSSLApprovalEmail(string $orderid): object
+    public function resendSSLApprovalEmail(string $orderid): stdClass
     {
         return $this->_request(Resources::SSL, 'resendApprovalEmail', compact('orderid'));
     }
@@ -279,9 +280,9 @@ class Onlinenic
      * @param string $approvalemail
      * @param int|NULL $webservertype
      * @param string|NULL $dcvmethod
-     * @return object
+     * @return stdClass
      */
-    public function reissueSSL(string $orderid, string $csr, string $approvalemail, int $webservertype = NULL, string $dcvmethod = NULL): object
+    public function reissueSSL(string $orderid, string $csr, string $approvalemail, int $webservertype = NULL, string $dcvmethod = NULL): stdClass
     {
         return $this->_request(Resources::SSL, 'reissueSSL', compact('orderid', 'csr', 'approvalemail', 'webservertype', 'dcvmethod'));
     }
@@ -300,9 +301,9 @@ class Onlinenic
      * @param string $orderid
      * @param string $reason 'key Compromise' or 'cessation of service'
      * @param string $approvalemail
-     * @return object
+     * @return stdClass
      */
-    public function cancelSSL(string $orderid, string $reason, string $approvalemail = NULL): object
+    public function cancelSSL(string $orderid, string $reason, string $approvalemail = NULL): stdClass
     {
         return $this->_request(Resources::SSL, 'cancelSSL', compact('orderid', 'reason', 'approvalemail'));
     }
@@ -311,9 +312,9 @@ class Onlinenic
      * Change Validation Email
      * @param string $orderid
      * @param string $newaddress
-     * @return object
+     * @return stdClass
      */
-    public function changeSSLValidationEmail(string $orderid, string $newaddress): object
+    public function changeSSLValidationEmail(string $orderid, string $newaddress): stdClass
     {
         return $this->_request(Resources::SSL, 'changeValidationEmail', compact('orderid', 'reason', 'newaddress'));
     }
@@ -321,9 +322,9 @@ class Onlinenic
     /**
      * Get SSL Certificate
      * @param string $orderid
-     * @return object
+     * @return stdClass
      */
-    public function getSSLCertificate(string $orderid): object
+    public function getSSLCertificate(string $orderid): stdClass
     {
         return $this->_request(Resources::SSL, 'getSSLCert', compact('orderid'));
     }
@@ -338,9 +339,9 @@ class Onlinenic
      * @param string $reason can be 'key Compromise' or 'cessation of service'
      * @param string|NULL $cert required by geotrust
      * @param string|NULL $revokemethod can be 'DNS' or 'Email'
-     * @return object
+     * @return stdClass
      */
-    public function revokeSSLCertificate(string $orderid, string $reason, string $cert = NULL, string $revokemethod = NULL): object
+    public function revokeSSLCertificate(string $orderid, string $reason, string $cert = NULL, string $revokemethod = NULL): stdClass
     {
         if ($cert) base64_encode($cert);
         return $this->_request(Resources::SSL, 'revokeSSL', compact('orderid', 'reason', 'revokemethod'));
@@ -350,9 +351,9 @@ class Onlinenic
      * Check Domain Availability
      * @param string $domain Domain Name
      * @param int|null $op Operation Flag
-     * @return object result
+     * @return stdClass result
      */
-    public function checkDomain(string $domain, int $op = null): object
+    public function checkDomain(string $domain, int $op = null): stdClass
     {
         return $this->_request(Resources::Domain, 'checkDomain', compact('domain', 'op'));
     }
@@ -367,11 +368,11 @@ class Onlinenic
      * @param string $tech_contact_id technical contact id
      * @param string $billing_contact_id billing contact id
      * @param string $premium_fee onlinenic requires you to send the amount you are going to pay if domain is premium
-     * @return object result
+     * @return stdClass result
      */
     public function registerDomain(string $domain, int $period, array $dns, string $registrant_contact_id,
                                    string $admin_contact_id, string $tech_contact_id, string $billing_contact_id,
-                                   string $premium_fee = null): object
+                                   string $premium_fee = null): stdClass
     {
 
         $dnss = [];
@@ -397,9 +398,9 @@ class Onlinenic
      * @param string $domain domain name that you own
      * @param int $period in years
      * @param string|NULL $premium_fee
-     * @return object
+     * @return stdClass
      */
-    public function renewDomain(string $domain, int $period, string $premium_fee = NULL): object
+    public function renewDomain(string $domain, int $period, string $premium_fee = NULL): stdClass
     {
         return $this->_request(Resources::Domain, 'renewDomain', [
             'domain' => $domain,
@@ -411,9 +412,9 @@ class Onlinenic
     /**
      * Get Domain Details
      * @param string $domain
-     * @return object
+     * @return stdClass
      */
-    public function getDomainDetails(string $domain): object
+    public function getDomainDetails(string $domain): stdClass
     {
         return $this->_request(Resources::Domain, 'infoDomain', compact('domain'));
     }
@@ -421,9 +422,9 @@ class Onlinenic
     /**
      * Transfer Auth Code
      * @param string $domain
-     * @return object
+     * @return stdClass
      */
-    public function getDomainAuthCode(string $domain): object
+    public function getDomainAuthCode(string $domain): stdClass
     {
         return $this->_request(Resources::Domain, 'getAuthCode', compact('domain'));
     }
@@ -432,9 +433,9 @@ class Onlinenic
      * Modify Domain Transfer Auth Code
      * @param string $domain domain name that you own
      * @param string $authcode the new auth code
-     * @return object
+     * @return stdClass
      */
-    public function modifyDomainAuthCode(string $domain, string $authcode): object
+    public function modifyDomainAuthCode(string $domain, string $authcode): stdClass
     {
         return $this->_request(Resources::Domain, 'updateAuthCode', compact('domain', 'authcode'));
     }
@@ -443,9 +444,9 @@ class Onlinenic
      * Domain Transfer Lock Status
      * @param string $domain domain name that you own
      * @param bool $locked whether domain transfer should be locked or not
-     * @return object
+     * @return stdClass
      */
-    public function setDomainTransferLockStatus(string $domain, bool $locked): object
+    public function setDomainTransferLockStatus(string $domain, bool $locked): stdClass
     {
         return $this->_request(Resources::Domain, 'updateDomainStatus', [
             'domain' => $domain,
@@ -457,9 +458,9 @@ class Onlinenic
      * Update Domain DNS
      * @param string $domain domain name that you own
      * @param array $dns two should be provided at least
-     * @return object
+     * @return stdClass
      */
-    public function updateDomainDNS(string $domain, array $dns): object
+    public function updateDomainDNS(string $domain, array $dns): stdClass
     {
         $dnss = [];
         $i = 0;
@@ -476,9 +477,9 @@ class Onlinenic
      * Set Domain Password for Enduser Pane
      * @param string $domain
      * @param string $password
-     * @return object
+     * @return stdClass
      */
-    public function setDomainPanelPassword(string $domain, string $password): object
+    public function setDomainPanelPassword(string $domain, string $password): stdClass
     {
         return $this->_request(Resources::Domain, 'setDomainPassword', compact('domain', 'password'));
     }
@@ -500,12 +501,12 @@ class Onlinenic
      * @param string|NULL $nexuscategory Peculiar Parameter For .us domains
      * @param string|NULL $orgtype Peculiar Parameter For .uk domains use UKDomainOrganizationType for valid values
      * @param null $license Peculiar Parameter For .uk domains, Business License number for organizations
-     * @return object
+     * @return stdClass
      */
     public function createContactID(string $domain, string $name, string $organization, string $country_two_digit,
                                     string $province, string $city, string $street, string $postal_code, string $phone,
                                     string $fax, string $email, string $apppurpose = NULL, string $nexuscategory = NULL,
-                                    string $orgtype = NULL, $license = NULL): object
+                                    string $orgtype = NULL, $license = NULL): stdClass
     {
         $ext = $this->_getDomainExtension($domain);
         // corrupt USA regime is trying to suppress innocent iranian people, it's unfair! down with USA Government.
@@ -541,10 +542,10 @@ class Onlinenic
      * @param string $regtype required only for .eu domains
      * @param string $org required only for .eu domains use EUDomainRegType for available types
      * @param string $email required only for .eu domains
-     * @return object
+     * @return stdClass
      * @todo this is not working i have opened an ticket for letting them know
      */
-    public function changeRegistrantName(string $domain, string $name, string $regtype = NULL, string $org = NULL, string $email = NULL): object
+    public function changeRegistrantName(string $domain, string $name, string $regtype = NULL, string $org = NULL, string $email = NULL): stdClass
     {
         return $this->_request(Resources::Domain, 'changeRegistrant', compact('domain', 'name', 'regtype', 'org', 'email'));
     }
@@ -553,9 +554,9 @@ class Onlinenic
      * Get Contact ID Details
      * @param string $domain domain name that you own
      * @param $contactid id of the created contact
-     * @return object
+     * @return stdClass
      */
-    public function getContactDetails(string $domain, $contactid): object
+    public function getContactDetails(string $domain, $contactid): stdClass
     {
         $ext = $this->_getDomainExtension($domain);
         return $this->_request(Resources::Domain, 'infoContact', compact('ext', 'contactid'));
@@ -568,10 +569,10 @@ class Onlinenic
      * @param string $admin_contact_id
      * @param string $technical_contact_id
      * @param string $billing_contact_id
-     * @return object
+     * @return stdClass
      */
     public function changeDomainContacts(string $domain, string $registrant_contact_id, string $admin_contact_id,
-                                         string $technical_contact_id, string $billing_contact_id): object
+                                         string $technical_contact_id, string $billing_contact_id): stdClass
     {
         return $this->_request(Resources::Domain, 'domainChangeContact', [
             'domain' => $domain,
@@ -596,11 +597,11 @@ class Onlinenic
      * @param string $phone
      * @param string $fax
      * @param string $email
-     * @return object
+     * @return stdClass
      */
     public function updateContactDetails(string $domain, string $contact_id, string $name, string $organization,
                                          string $country_two_digit, string $province, string $city, string $street,
-                                         string $postal_code, string $phone, string $fax, string $email): object
+                                         string $postal_code, string $phone, string $fax, string $email): stdClass
     {
         $ext = $this->_getDomainExtension($domain);
         return $this->_request(Resources::Domain, 'updateContact', [
@@ -626,9 +627,9 @@ class Onlinenic
      * @param string $auth_code transfer password
      * @param string $contact_id
      * @param string|NULL $premium_fee
-     * @return object
+     * @return stdClass
      */
-    public function domainTransferIn(string $domain, string $auth_code, string $contact_id, string $premium_fee = NULL): object
+    public function domainTransferIn(string $domain, string $auth_code, string $contact_id, string $premium_fee = NULL): stdClass
     {
         return $this->_request(Resources::Domain, 'transferDomain', [
             'domain' => $domain,
@@ -642,9 +643,9 @@ class Onlinenic
      * Get Domain Transfer Status
      * @param string $domain domain name that you requested to transfer in
      * @param string $password auth code of the transfer
-     * @return object
+     * @return stdClass
      */
-    public function domainTransferStatus(string $domain, string $password): object
+    public function domainTransferStatus(string $domain, string $password): stdClass
     {
         return $this->_request(Resources::Domain, 'queryTransferStatus', compact('domain', 'password'));
     }
@@ -653,9 +654,9 @@ class Onlinenic
      * Cancel Domain Transfer In
      * @param string $domain
      * @param string $password
-     * @return object
+     * @return stdClass
      */
-    public function cancelDomainTransfer(string $domain, string $password): object
+    public function cancelDomainTransfer(string $domain, string $password): stdClass
     {
         return $this->_request(Resources::Domain, 'cancelDomainTransfer', compact('domain', 'password'));
     }
@@ -664,9 +665,9 @@ class Onlinenic
      * Get Private Name Server Details
      * @param string $ns name server
      * @param string|NULL $domain domain required for exact tld detection, for normal tld and name sever it will be detected automatically
-     * @return object
+     * @return stdClass
      */
-    public function getPrivateNSDetails(string $ns, string $domain = NULL): object
+    public function getPrivateNSDetails(string $ns, string $domain = NULL): stdClass
     {
         $ext = $domain ? $this->_getDomainExtension($domain) : $this->_getDomainExtension($this->_getDomainExtension($ns));
         return $this->_request(Resources::Domain, 'infoHost', [
@@ -679,9 +680,9 @@ class Onlinenic
      * Check Private Name Server Availability
      * @param string $ns name server to check
      * @param string|NULL $domain domain required for exact tld detection, for normal tld and name sever it will be detected automatically
-     * @return object
+     * @return stdClass
      */
-    public function checkPrivateNS(string $ns, string $domain = NULL): object
+    public function checkPrivateNS(string $ns, string $domain = NULL): stdClass
     {
         $ext = $domain ? $this->_getDomainExtension($domain) : $this->_getDomainExtension($this->_getDomainExtension($ns));
         return $this->_request(Resources::Domain, 'checkHost', [
@@ -695,9 +696,9 @@ class Onlinenic
      * @param string $ns
      * @param string|NULL $ip
      * @param string|NULL $domain
-     * @return object
+     * @return stdClass
      */
-    public function createPrivateNS(string $ns, string $ip = NULL, string $domain = NULL): object
+    public function createPrivateNS(string $ns, string $ip = NULL, string $domain = NULL): stdClass
     {
         $ext = $domain ? $this->_getDomainExtension($domain) : $this->_getDomainExtension($this->_getDomainExtension($ns));
         return $this->_request(Resources::Domain, 'createHost', [
@@ -712,9 +713,9 @@ class Onlinenic
      * @param string $ns name server that you want to update
      * @param string|NULL $ip ip address to add
      * @param string|NULL $domain
-     * @return object
+     * @return stdClass
      */
-    public function updatePrivateNSIP(string $ns, string $ip, string $domain = NULL): object
+    public function updatePrivateNSIP(string $ns, string $ip, string $domain = NULL): stdClass
     {
         $ext = $domain ? $this->_getDomainExtension($domain) : $this->_getDomainExtension($this->_getDomainExtension($ns));
         return $this->_request(Resources::Domain, 'updateHost', [
@@ -729,9 +730,9 @@ class Onlinenic
      * @param string $ns name server that you want to update
      * @param string|NULL $ip ip address to remove
      * @param string|NULL $domain
-     * @return object
+     * @return stdClass
      */
-    public function removePrivateNSIP(string $ns, string $ip, string $domain = NULL): object
+    public function removePrivateNSIP(string $ns, string $ip, string $domain = NULL): stdClass
     {
         $ext = $domain ? $this->_getDomainExtension($domain) : $this->_getDomainExtension($this->_getDomainExtension($ns));
         return $this->_request(Resources::Domain, 'updateHost', [
@@ -745,9 +746,9 @@ class Onlinenic
      * Delete Private Name Server
      * @param string $ns name server that you want to update
      * @param string|NULL $domain
-     * @return object
+     * @return stdClass
      */
-    public function deletePrivateNS(string $ns, string $domain = NULL): object
+    public function deletePrivateNS(string $ns, string $domain = NULL): stdClass
     {
         $ext = $domain ? $this->_getDomainExtension($domain) : $this->_getDomainExtension($this->_getDomainExtension($ns));
         return $this->_request(Resources::Domain, 'deleteHost', [
@@ -761,9 +762,9 @@ class Onlinenic
      * @param string $resource resource of the api
      * @param $command string API Command
      * @param $params array Params of the command
-     * @return object result of the executed command
+     * @return stdClass result of the executed command
      */
-    private function _request(string $resource, string $command, array $params): object
+    private function _request(string $resource, string $command, array $params): stdClass
     {
         $timestamp = time();
         $token = md5($this->account_id . md5($this->password) . $timestamp . $command);
