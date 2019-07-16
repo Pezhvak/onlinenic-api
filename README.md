@@ -1,3 +1,4 @@
+[![StyleCI](https://github.styleci.io/repos/163342651/shield?branch=master)](https://github.styleci.io/repos/163342651)
 <a href="https://packagist.org/packages/pezhvak/onlinenic-api"><img src="https://poser.pugx.org/pezhvak/onlinenic-api/d/total.svg" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/pezhvak/onlinenic-api"><img src="https://poser.pugx.org/pezhvak/onlinenic-api/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/pezhvak/onlinenic-api"><img src="https://poser.pugx.org/pezhvak/onlinenic-api/license.svg" alt="License"></a>
