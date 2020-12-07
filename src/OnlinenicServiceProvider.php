@@ -16,7 +16,8 @@ class OnlinenicServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/config/onlinenic.php', 'onlinenic'
+            __DIR__.'/config/onlinenic.php',
+            'onlinenic'
         );
 
         $this->app->bind('Pezhvak\OnlinenicApi\Onlinenic', function () {

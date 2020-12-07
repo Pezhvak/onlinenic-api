@@ -101,15 +101,36 @@ class Onlinenic
      *
      * @return stdClass result
      */
-    public function orderSSL(string $product_id, int $period, int $server_type, string $csr, string $approval_email,
-                             string $dcv_method = DCVMethods::Email, string $admin_firstname = null,
-                             string $admin_lastname = null, string $admin_title = null, string $admin_phone = null,
-                             string $admin_email = null, string $tech_firstname = null, string $tech_lastname = null,
-                             string $tech_title = null, string $tech_phone = null, string $tech_email = null,
-                             string $sans = null, string $duns = null, string $dba = null, string $org_name = null,
-                             string $org_address_1 = null, string $org_address_2 = null, string $org_city = null,
-                             string $org_state = null, string $org_country = null, string $org_phone = null,
-                             string $org_fax = null, string $org_postalcode = null): stdClass
+    public function orderSSL(
+        string $product_id,
+        int $period,
+        int $server_type,
+        string $csr,
+        string $approval_email,
+        string $dcv_method = DCVMethods::Email,
+        string $admin_firstname = null,
+        string $admin_lastname = null,
+        string $admin_title = null,
+        string $admin_phone = null,
+        string $admin_email = null,
+        string $tech_firstname = null,
+        string $tech_lastname = null,
+        string $tech_title = null,
+        string $tech_phone = null,
+        string $tech_email = null,
+        string $sans = null,
+        string $duns = null,
+        string $dba = null,
+        string $org_name = null,
+        string $org_address_1 = null,
+        string $org_address_2 = null,
+        string $org_city = null,
+        string $org_state = null,
+        string $org_country = null,
+        string $org_phone = null,
+        string $org_fax = null,
+        string $org_postalcode = null
+    ): stdClass
     {
         return $this->_request(Resources::SSL, 'orderSSL', [
             'productid'       => $product_id,
@@ -174,15 +195,33 @@ class Onlinenic
      *
      * @return stdClass result
      */
-    public function renewSSL(string $order_id, int $period, string $csr, string $approval_email,
-                             string $dcv_method = DCVMethods::Email, string $admin_firstname = null,
-                             string $admin_lastname = null, string $admin_title = null, string $admin_phone = null,
-                             string $admin_email = null, string $tech_firstname = null, string $tech_lastname = null,
-                             string $tech_title = null, string $tech_phone = null, string $tech_email = null,
-                             string $duns = null, string $org_name = null,
-                             string $org_address_1 = null, string $org_address_2 = null, string $org_city = null,
-                             string $org_state = null, string $org_country = null, string $org_phone = null,
-                             string $org_fax = null, string $org_postalcode = null): stdClass
+    public function renewSSL(
+        string $order_id,
+        int $period,
+        string $csr,
+        string $approval_email,
+        string $dcv_method = DCVMethods::Email,
+        string $admin_firstname = null,
+        string $admin_lastname = null,
+        string $admin_title = null,
+        string $admin_phone = null,
+        string $admin_email = null,
+        string $tech_firstname = null,
+        string $tech_lastname = null,
+        string $tech_title = null,
+        string $tech_phone = null,
+        string $tech_email = null,
+        string $duns = null,
+        string $org_name = null,
+        string $org_address_1 = null,
+        string $org_address_2 = null,
+        string $org_city = null,
+        string $org_state = null,
+        string $org_country = null,
+        string $org_phone = null,
+        string $org_fax = null,
+        string $org_postalcode = null
+    ): stdClass
     {
         return $this->_request(Resources::SSL, 'renewSSL', [
             'orderid'         => $order_id,
@@ -403,9 +442,16 @@ class Onlinenic
      *
      * @return stdClass result
      */
-    public function registerDomain(string $domain, int $period, array $dns, string $registrant_contact_id,
-                                   string $admin_contact_id, string $tech_contact_id, string $billing_contact_id,
-                                   string $premium_fee = null): stdClass
+    public function registerDomain(
+        string $domain,
+        int $period,
+        array $dns,
+        string $registrant_contact_id,
+        string $admin_contact_id,
+        string $tech_contact_id,
+        string $billing_contact_id,
+        string $premium_fee = null
+    ): stdClass
     {
         $dnss = [];
         $i = 0;
@@ -415,15 +461,15 @@ class Onlinenic
         }
 
         return $this->_request(Resources::Domain, 'registerDomain', [
-                'domain' => $domain,
-                'period' => $period,
-                'fee'    => $premium_fee,
-            ] + $dnss + [
-                'registrant' => $registrant_contact_id,
-                'admin'      => $admin_contact_id,
-                'tech'       => $tech_contact_id,
-                'billing'    => $billing_contact_id,
-            ]);
+            'domain' => $domain,
+            'period' => $period,
+            'fee'    => $premium_fee,
+        ] + $dnss + [
+            'registrant' => $registrant_contact_id,
+            'admin'      => $admin_contact_id,
+            'tech'       => $tech_contact_id,
+            'billing'    => $billing_contact_id,
+        ]);
     }
 
     /**
@@ -515,8 +561,8 @@ class Onlinenic
         }
 
         return $this->_request(Resources::Domain, 'updateDomainDns', [
-                'domain' => $domain,
-            ] + $dnss);
+            'domain' => $domain,
+        ] + $dnss);
     }
 
     /**
@@ -553,10 +599,23 @@ class Onlinenic
      *
      * @return stdClass
      */
-    public function createContactID(string $domain, string $name, string $organization, string $country_two_digit,
-                                    string $province, string $city, string $street, string $postal_code, string $phone,
-                                    string $fax, string $email, string $apppurpose = null, string $nexuscategory = null,
-                                    string $orgtype = null, $license = null): stdClass
+    public function createContactID(
+        string $domain,
+        string $name,
+        string $organization,
+        string $country_two_digit,
+        string $province,
+        string $city,
+        string $street,
+        string $postal_code,
+        string $phone,
+        string $fax,
+        string $email,
+        string $apppurpose = null,
+        string $nexuscategory = null,
+        string $orgtype = null,
+        $license = null
+    ): stdClass
     {
         $ext = $this->_getDomainExtension($domain);
         // corrupt USA regime is trying to suppress innocent iranian people, it's unfair! down with USA Government.
@@ -639,8 +698,13 @@ class Onlinenic
      *
      * @return stdClass
      */
-    public function changeDomainContacts(string $domain, string $registrant_contact_id, string $admin_contact_id,
-                                         string $technical_contact_id, string $billing_contact_id): stdClass
+    public function changeDomainContacts(
+        string $domain,
+        string $registrant_contact_id,
+        string $admin_contact_id,
+        string $technical_contact_id,
+        string $billing_contact_id
+    ): stdClass
     {
         return $this->_request(Resources::Domain, 'domainChangeContact', [
             'domain'     => $domain,
@@ -669,9 +733,20 @@ class Onlinenic
      *
      * @return stdClass
      */
-    public function updateContactDetails(string $domain, string $contact_id, string $name, string $organization,
-                                         string $country_two_digit, string $province, string $city, string $street,
-                                         string $postal_code, string $phone, string $fax, string $email): stdClass
+    public function updateContactDetails(
+        string $domain,
+        string $contact_id,
+        string $name,
+        string $organization,
+        string $country_two_digit,
+        string $province,
+        string $city,
+        string $street,
+        string $postal_code,
+        string $phone,
+        string $fax,
+        string $email
+    ): stdClass
     {
         $ext = $this->_getDomainExtension($domain);
 
@@ -878,7 +953,8 @@ class Onlinenic
                 (strtr($this->sandbox ? self::ENDPOINT_SANDBOX : self::ENDPOINT, ['{resource}' => $resource, '{command}' => $command])),
                 [
                     'form_params' => $data,
-                ])
+                ]
+            )
                 ->getBody()
                 ->getContents()
         );
